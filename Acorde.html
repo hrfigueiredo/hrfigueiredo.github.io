@@ -1,0 +1,350 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Jogo Acorde!</TITLE>
+<META content="text/html; charset=windows-1252" http-equiv=Content-Type>
+<STYLE type=text/css>A:link {
+	COLOR: #054d8b
+}
+A:visited {
+	COLOR: #054d8b
+}
+A:active {
+	COLOR: #054d8b
+}
+A:hover {
+	COLOR: #f9fff0
+}
+BODY {
+	BACKGROUND-COLOR: #fffef9; MARGIN-TOP: 0px; FONT-FAMILY: comic sans ms,Arial, Helvetica, sans-serif; MARGIN-LEFT: 0px; MARGIN-RIGHT: 0px
+}
+TABLE {
+	BORDER-BOTTOM-COLOR: #ffffff; PADDING-BOTTOM: 3px; BORDER-RIGHT-WIDTH: 0px; BORDER-TOP-COLOR: #ffffff; PADDING-LEFT: 3px; PADDING-RIGHT: 3px; FONT-FAMILY: comic sans ms,Arial, Helvetica, sans-serif; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-RIGHT-COLOR: #ffffff; BORDER-LEFT-COLOR: #ffffff; BORDER-LEFT-WIDTH: 0px; PADDING-TOP: 3px
+}
+TH {
+	BORDER-BOTTOM: gray 1px solid; FILTER: alpha(opacity=75); BORDER-LEFT: gray 1px solid; BACKGROUND-COLOR: #bebe7e; FONT-FAMILY: comic sans ms,Arial, Helvetica, sans-serif; HEIGHT: 12px; COLOR: #12120a; FONT-SIZE: 11pt; BORDER-TOP: gray 1px solid; BORDER-RIGHT: gray 1px solid; moz-opacity: 45%
+}
+tds {
+	FONT-FAMILY: comic sans ms,arial
+}
+TD {
+	BORDER-BOTTOM: gray 1px solid; TEXT-ALIGN: left; FILTER: alpha(opacity=70); BORDER-LEFT: gray 1px solid; BACKGROUND-COLOR: silver; WIDTH: 100px; FONT-FAMILY: comic sans ms,arial; HEIGHT: 18pt; FONT-SIZE: 9pt; BORDER-TOP: gray 1px solid; FONT-WEIGHT: bold; BORDER-RIGHT: gray 1px solid; moz-opacity: 45%
+}
+INPUT {
+	BORDER-BOTTOM-STYLE: none; BORDER-RIGHT-STYLE: none; WIDTH: 100%; FONT-FAMILY: comic sans ms,arial; BORDER-TOP-STYLE: none; FONT-SIZE: 8pt; BORDER-LEFT-STYLE: none; CURSOR: hand
+}
+P {
+	FONT-FAMILY: Arial, Helvetica, sans-serif
+	    color: "#004080"
+}
+</STYLE>
+
+<SCRIPT language=JavaScript type=text/javascript>
+   var acord = new Array(7) ;
+   for ( i = 0; i < acord.length; i++) {
+   	acord[i] = new Array(2) ;
+   }
+   // escala de C
+   acord[0][0] = "c" ;
+   acord[0][1] = "dm" ;
+   acord[0][2] = "em" ;     
+   acord[0][3] = "f" ;
+   acord[0][4] = "g" ;
+   acord[0][5] = "am" ;
+   acord[0][6] = "bº" ;            
+   // escala de D
+   acord[1][0] = "d" ;
+   acord[1][1] = "em" ;
+   acord[1][2] = "f#m" ;     
+   acord[1][3] = "g" ;
+   acord[1][4] = "a" ;
+   acord[1][5] = "bm" ;
+   acord[1][6] = "c#º" ;            
+   // escala de E   
+   acord[2][0] = "e" ;
+   acord[2][1] = "f#m" ;
+   acord[2][2] = "g#m" ;     
+   acord[2][3] = "a" ;
+   acord[2][4] = "b" ;
+   acord[2][5] = "c#m" ;
+   acord[2][6] = "d#º" ;            
+   // escala de F   
+   acord[3][0] = "f" ;
+   acord[3][1] = "gm" ;
+   acord[3][2] = "am" ;     
+   acord[3][3] = "Bb" ;
+   acord[3][4] = "c" ;
+   acord[3][5] = "dm" ;
+   acord[3][6] = "eº" ;            
+   // escala de G
+   acord[4][0] = "g" ;
+   acord[4][1] = "am" ;
+   acord[4][2] = "bm" ;     
+   acord[4][3] = "c" ;
+   acord[4][4] = "d" ;
+   acord[4][5] = "em" ;
+   acord[4][6] = "f#º" ;            
+   // escala de A
+   acord[5][0] = "a" ;
+   acord[5][1] = "bm" ;
+   acord[5][2] = "c#m" ;     
+   acord[5][3] = "d" ;
+   acord[5][4] = "e" ;
+   acord[5][5] = "f#m" ;
+   acord[5][6] = "g#º" ;            
+   // escala de B
+   acord[6][0] = "b" ;
+   acord[6][1] = "c#m" ;
+   acord[6][2] = "d#m" ;     
+   acord[6][3] = "e" ;
+   acord[6][4] = "f#" ;
+   acord[6][5] = "g#m" ;
+   acord[6][6] = "a#º" ;
+   
+   var v_resposta = "" ;
+   var v_score = 0 ;
+   var v_sec_ini = 0 ;
+   var v_tentativas = 0 ;
+   var v_date = new Date("December 31, 2025") ;
+   var v_cookie_date = v_date.toGMTString() ;
+   var v_chama_fim ;
+   var v_chama_temp_resp ;
+   var v_contador = 0 ;
+   var v_contador_temp = 0 ;	
+
+  function fc_inicia() {
+		v_resposta = "" ;
+	 	v_score = 0 ;
+	 	v_sec_ini = 0 ;
+	 	v_tentativas = 0 ;
+		v_contador = 0 ;
+		v_contador_temp = 0 ;
+		window.clearInterval(v_chama_fim) ;
+		window.clearInterval(v_chama_temp_resp) ;		
+	   
+	 	id_placar.innerHTML = 0 ;
+		id_erros.innerHTML = 0 ;
+		id_record.innerHTML = document.cookie ;
+     	fc_sorteia_acorde() ;
+		v_chama_temp_resp = window.setInterval("fc_temp_resp()",100) ;	
+		fc_prepara_inicio() ;
+  }
+
+  function fc_prepara_inicio() {
+		id_game_over.style.display="none" ;	   		
+  }
+   
+  function fc_resp() {
+	 	id_resp.style.display="inline" ;
+     	id_tab.style.display="none" ;	 
+  }
+   
+  function fc_tab() {
+	    fc_monta_tab() ;
+		id_tab.style.display="inline" ;
+  }
+	
+  function fc_oculta_tab() {
+      	id_tab.style.display="none" ;
+	 	id_resp.style.display="none" ;		
+  }
+
+  function fc_monta_tab() {
+	  	var v_array = "" ;
+	  	for ( i = 0; i < acord.length; i++ ) {
+		   	v_array+= "<tr><th width='14%' align='center'>" + acord[i][0] + "</th><th width='14%' align='center'>" 
+		   	+ acord[i][1] + "</th><th width='14%' align='center'>"
+		   	+ acord[i][2] + "</th><th width='14%' align='center'>"
+		   	+ acord[i][3] + "</th><th width='14%' align='center'>"
+		   	+ acord[i][4] + "</th><th width='14%' align='center'>"
+		  	+ acord[i][5] + "</th><th width='14%' align='center'>"
+		   	+ acord[i][6] + "</th>" 
+			+ "</tr>"
+	  	}         
+	  	id_tab.innerHTML="<table style='font-color:orange' cellspacing='0' cellpadding='5' align='center' width='60%' border='1'>" + v_array + "</th></tr></table>" + "<br><br>" ;
+  }	   
+   
+  function fc_sorteia_acorde() {
+	  	var v_tempo_ini = new Date() ;
+	  	var v_priv_sec_ini = v_tempo_ini.getTime() ;   
+      	var sort_tom = Math.round(Math.random() * (acord.length - 1)) ;
+	  	var sort_grau = Math.round(Math.random() * (acord.length - 1)) ;
+	  	var v_tom = acord[sort_tom][0] ;
+	   
+	  	v_sec_ini = v_priv_sec_ini ;
+	  	v_pub_sec_ini = v_sec_ini ;
+	  	v_resposta = acord[sort_tom][sort_grau] ;
+	  	id_grau.innerHTML = parseInt(sort_grau + 1) + "º" ; 
+	  	id_tom.innerHTML = v_tom ;
+	  	id_resp.innerHTML = v_resposta ;
+  }
+
+  function fc_verifica(p_resposta) {
+		var v_tempo_fim = new Date() ;
+		var v_sec_fim = v_tempo_fim.getTime() ;	
+		var v_tempo_total =	v_sec_fim - v_sec_ini ;
+		//alert(v_tempo_total)
+		if (v_tentativas <= 3 ) {
+		    var v_high_score = document.cookie ;
+			var broken_cookie = v_high_score.split("=") ;
+			var v_score_cookie = broken_cookie[1] ;
+			v_score_cookie = unescape(v_score_cookie) ;
+			if (p_resposta == v_resposta ) {
+				v_score += (10000000/ v_tempo_total) ;
+				fc_sorteia_acorde() ;
+				v_contador_temp = 0;
+				id_placar.innerHTML = (parseInt(v_score)/100) ;
+			} else {
+				v_tentativas += 1 ;		
+				if (v_tentativas <= 3 ) {
+					id_erros.innerHTML = v_tentativas ;
+					alert("Errado! \n" + "A resposta certa é : \n" + v_resposta)
+				} else {
+					fc_game_over() ;
+				}
+			}
+		}
+  }
+   
+  function fc_game_over() {
+   		if ( (parseFloat(document.cookie) < (parseInt(v_score)/100)) || ( document.cookie == "" ) ) {
+			v_high_score = escape(parseInt(v_score)/100) ;
+			v_high_score = v_high_score + "; expires=" + v_cookie_date ;					
+			document.cookie = v_high_score ;
+		}
+		v_chama_fim = window.setInterval("fc_call_mens_game_over()",20) ;
+  }
+   
+  function fc_call_mens_game_over() {
+   		//v_contador_temp = 0 ;
+		window.clearInterval(v_chama_temp_resp) ;
+   		if ( v_contador <= 100 ) {
+			v_contador += 5 ; 
+			id_game_over.style.display="inline" ;
+			id_game_over.style.filter="alpha(opacity=" + v_contador + ")" ;
+		} else {
+			window.clearInterval(v_chama_fim) ;
+		}	
+  }
+   
+  function fc_temp_resp() {
+   		if ( v_contador_temp <= 350 ) {
+			v_contador_temp += 1 ; 
+   			id_temp_resp.innerHTML="<table width=" + v_contador_temp + " style=\"filter:alpha(opacity=25)\"><tr><td style=\"background-color:#1fa8f1\">&nbsp;</td></tr></table>";
+		} else {
+			v_tentativas = 4 ;
+			window.clearInterval(v_chama_temp_resp) ;
+			fc_game_over() ;
+		}	
+  }
+   
+</SCRIPT>
+
+<META name=GENERATOR content="MSHTML 8.00.6001.18813"></HEAD>
+<BODY onload=fc_prepara_inicio()>
+<DIV style="POSITION: absolute; DISPLAY: none; TOP: 25px; LEFT: 125px" 
+id=id_tab></DIV>
+<TABLE 
+style="POSITION: absolute; FILTER: alpha(opacity=100); DISPLAY: inline; COLOR: royalblue; TOP: 50%; LEFT: 37%" 
+id=id_game_over width="25%" align=center>
+  <TBODY>
+  <TR>
+    <TD style="TEXT-ALIGN: center">Fim de jogo</TD></TR></TBODY></TABLE>
+<TABLE style="BACKGROUND-COLOR: #f0f0f0" onmouseover=fc_tab() 
+onmouseout=fc_oculta_tab() onclick=fc_resp() width="100%">
+  <TBODY>
+  <TR>
+    <TH align=middle>Acorde! v1.0</TH></TR></TBODY></TABLE><BR>
+<TABLE width="30%" align=right>
+  <TBODY>
+  <TR>
+    <TD style="WIDTH: 25%">Pontos</TD>
+    <TD style="WIDTH: 25%" id=id_placar align=middle>0</TD>
+    <TD style="WIDTH: 25%">Erros</TD>
+    <TD style="WIDTH: 25%" id=id_erros align=middle>0</TD></TR></TBODY></TABLE>
+<TABLE width="30%" align=left>
+  <TBODY>
+  <TR>
+    <TD style="WIDTH: 50%">Recorde</TD>
+    <TD style="WIDTH: 50%" id=id_record 
+align=middle>0</TD></TR></TBODY></TABLE><BR><BR>
+<TABLE width="80%" align=center>
+  <TBODY>
+  <TR>
+    <TH width="5%">O </TH>
+    <TH style="COLOR: red; FONT-WEIGHT: bold" id=id_grau width="15%" 
+    align=middle>&nbsp;</TH>
+    <TH width="15%" align=middle>grau de</TH>
+    <TH style="COLOR: red; FONT-WEIGHT: bold" id=id_tom width="20%" 
+      align=middle>&nbsp;</TH>
+    <TH width="5%">é : </TH>
+    <TH style="DISPLAY: none" id=id_resp width="30%" 
+  align=middle></TH></TR></TBODY></TABLE>
+<TABLE style="VISIBILITY: hidden">
+  <TBODY>
+  <TR>&nbsp;</TR></TBODY></TABLE>
+<TABLE style="CURSOR: hand" border=1 cellSpacing=5 cellPadding=0 width="80%" 
+align=center>
+  <TBODY>
+  <TR>
+    <TD width="14%"><INPUT onclick="fc_verifica('c')" value=c type=button name=c></TD>
+    <TD><INPUT onclick="fc_verifica('d')" value=d type=button name=d></TD>
+    <TD><INPUT onclick="fc_verifica('e')" value=e type=button name=e></TD>
+    <TD><INPUT onclick="fc_verifica('f')" value=f type=button name=f></TD>
+    <TD><INPUT onclick="fc_verifica('g')" value=g type=button name=g></TD>
+    <TD><INPUT onclick="fc_verifica('a')" value=a type=button name=a></TD>
+    <TD><INPUT onclick="fc_verifica('b')" value=b type=button name=b></TD></TR>
+  <TR>
+    <TD width="14%"><INPUT onclick="fc_verifica('cm')" value=cm type=button name=cm></TD>
+    <TD><INPUT onclick="fc_verifica('dm')" value=dm type=button name=dm></TD>
+    <TD><INPUT onclick="fc_verifica('em')" value=em type=button name=em></TD>
+    <TD><INPUT onclick="fc_verifica('fm')" value=fm type=button name=fm></TD>
+    <TD><INPUT onclick="fc_verifica('gm')" value=gm type=button name=gm></TD>
+    <TD><INPUT onclick="fc_verifica('am')" value=am type=button name=am></TD>
+    <TD><INPUT onclick="fc_verifica('bm')" value=bm type=button name=bm></TD></TR>
+  <TR>
+    <TD width="14%"><INPUT onclick="fc_verifica('c#')" value=c# type=button name=c#></TD>
+    <TD><INPUT onclick="fc_verifica('d#')" value=d# type=button name=d#></TD>
+    <TD>&nbsp;</TD>
+    <TD><INPUT onclick="fc_verifica('f#')" value=f# type=button name=f#></TD>
+    <TD><INPUT onclick="fc_verifica('g#')" value=g# type=button name=g#></TD>
+    <TD><INPUT onclick="fc_verifica('Bb')" value=a# type=button name=a#></TD>
+    <TD>&nbsp;</TD></TR>
+  <TR>
+    <TD width="14%"><INPUT onclick="fc_verifica('c#m')" value=c#m type=button name=c#m></TD>
+    <TD><INPUT onclick="fc_verifica('d#m')" value=d#m type=button name=d#m></TD>
+    <TD>&nbsp;</TD>
+    <TD><INPUT onclick="fc_verifica('f#m')" value=f#m type=button name=f#m></TD>
+    <TD><INPUT onclick="fc_verifica('g#m')" value=g#m type=button name=g#m></TD>
+    <TD><INPUT onclick="fc_verifica('a#m')" value=a#m type=button name=a#m></TD>
+    <TD>&nbsp;</TD></TR>
+  <TR>
+    <TD width="14%"><INPUT onclick="fc_verifica('cº')" value=cº type=button name=cº></TD>
+    <TD><INPUT onclick="fc_verifica('dº')" value=dº type=button name=dº></TD>
+    <TD><INPUT onclick="fc_verifica('eº')" value=eº type=button name=eº></TD>
+    <TD><INPUT onclick="fc_verifica('fº')" value=fº type=button name=fº></TD>
+    <TD><INPUT onclick="fc_verifica('gº')" value=gº type=button name=gº></TD>
+    <TD><INPUT onclick="fc_verifica('aº')" value=aº type=button name=aº></TD>
+    <TD><INPUT onclick="fc_verifica('bº')" value=bº type=button name=bº></TD></TR>
+  <TR>
+    <TD width="14%"><INPUT onclick="fc_verifica('c#º')" value=c#º type=button name=c#º></TD>
+    <TD><INPUT onclick="fc_verifica('d#º')" value=d#º type=button name=d#º></TD>
+    <TD>&nbsp;</TD>
+    <TD><INPUT onclick="fc_verifica('f#º')" value=f#º type=button name=f#º></TD>
+    <TD><INPUT onclick="fc_verifica('g#º')" value=g#º type=button name=g#º></TD>
+    <TD><INPUT onclick="fc_verifica('a#º')" value=a#º type=button name=a#º></TD>
+    <TD>&nbsp;</TD></TR></TBODY></TABLE>
+<CENTER>&nbsp;</CENTER>
+<TABLE style="POSITION: absolute; LEFT: 46px" width="80%">
+  <TBODY>
+  <TR>
+    <TD style="BACKGROUND-COLOR: #ffffff">
+      <DIV id=id_temp_resp></DIV></TD></TR></TBODY></TABLE>
+<CENTER>&nbsp;</CENTER>
+<CENTER>&nbsp;</CENTER>
+<CENTER>&nbsp;</CENTER>
+<TABLE width="10%" align=center>
+  <TBODY>
+  <TR>
+    <TD style="TEXT-ALIGN: center"><INPUT onclick=fc_inicia() value=Novo type=button name=p_resp></TD></TR></TBODY></TABLE>
+<CENTER>&nbsp;</CENTER>
+<CENTER style="FONT-SIZE: 7pt">Trog Designs® 2004 - Todos os direitos reservados 
+</CENTER></BODY></HTML>
