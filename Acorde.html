@@ -33,7 +33,7 @@ INPUT {
 }
 P {
 	FONT-FAMILY: Arial, Helvetica, sans-serif
-	    color: "#004080"
+	    color "#004080"
 }
 </STYLE>
 
@@ -49,7 +49,7 @@ P {
    acord[0][3] = "f" ;
    acord[0][4] = "g" ;
    acord[0][5] = "am" ;
-   acord[0][6] = "bº" ;            
+   acord[0][6] = "bï¿½" ;            
    // escala de D
    acord[1][0] = "d" ;
    acord[1][1] = "em" ;
@@ -57,7 +57,7 @@ P {
    acord[1][3] = "g" ;
    acord[1][4] = "a" ;
    acord[1][5] = "bm" ;
-   acord[1][6] = "c#º" ;            
+   acord[1][6] = "c#ï¿½" ;            
    // escala de E   
    acord[2][0] = "e" ;
    acord[2][1] = "f#m" ;
@@ -65,7 +65,7 @@ P {
    acord[2][3] = "a" ;
    acord[2][4] = "b" ;
    acord[2][5] = "c#m" ;
-   acord[2][6] = "d#º" ;            
+   acord[2][6] = "d#ï¿½" ;            
    // escala de F   
    acord[3][0] = "f" ;
    acord[3][1] = "gm" ;
@@ -73,7 +73,7 @@ P {
    acord[3][3] = "Bb" ;
    acord[3][4] = "c" ;
    acord[3][5] = "dm" ;
-   acord[3][6] = "eº" ;            
+   acord[3][6] = "eï¿½" ;            
    // escala de G
    acord[4][0] = "g" ;
    acord[4][1] = "am" ;
@@ -81,7 +81,7 @@ P {
    acord[4][3] = "c" ;
    acord[4][4] = "d" ;
    acord[4][5] = "em" ;
-   acord[4][6] = "f#º" ;            
+   acord[4][6] = "f#ï¿½" ;            
    // escala de A
    acord[5][0] = "a" ;
    acord[5][1] = "bm" ;
@@ -89,7 +89,7 @@ P {
    acord[5][3] = "d" ;
    acord[5][4] = "e" ;
    acord[5][5] = "f#m" ;
-   acord[5][6] = "g#º" ;            
+   acord[5][6] = "g#ï¿½" ;            
    // escala de B
    acord[6][0] = "b" ;
    acord[6][1] = "c#m" ;
@@ -97,7 +97,7 @@ P {
    acord[6][3] = "e" ;
    acord[6][4] = "f#" ;
    acord[6][5] = "g#m" ;
-   acord[6][6] = "a#º" ;
+   acord[6][6] = "a#ï¿½" ;
    
    var v_resposta = "" ;
    var v_score = 0 ;
@@ -172,7 +172,7 @@ P {
 	  	v_sec_ini = v_priv_sec_ini ;
 	  	v_pub_sec_ini = v_sec_ini ;
 	  	v_resposta = acord[sort_tom][sort_grau] ;
-	  	id_grau.innerHTML = parseInt(sort_grau + 1) + "º" ; 
+	  	id_grau.innerHTML = parseInt(sort_grau + 1) + "ï¿½" ; 
 	  	id_tom.innerHTML = v_tom ;
 	  	id_resp.innerHTML = v_resposta ;
   }
@@ -196,7 +196,7 @@ P {
 				v_tentativas += 1 ;		
 				if (v_tentativas <= 3 ) {
 					id_erros.innerHTML = v_tentativas ;
-					alert("Errado! \n" + "A resposta certa é : \n" + v_resposta)
+					alert("Errado! \n" + "A resposta certa ï¿½ : \n" + v_resposta)
 				} else {
 					fc_game_over() ;
 				}
@@ -275,7 +275,7 @@ align=middle>0</TD></TR></TBODY></TABLE><BR><BR>
     <TH width="15%" align=middle>grau de</TH>
     <TH style="COLOR: red; FONT-WEIGHT: bold" id=id_tom width="20%" 
       align=middle>&nbsp;</TH>
-    <TH width="5%">é : </TH>
+    <TH width="5%">ï¿½ : </TH>
     <TH style="DISPLAY: none" id=id_resp width="30%" 
   align=middle></TH></TR></TBODY></TABLE>
 <TABLE style="VISIBILITY: hidden">
@@ -317,20 +317,20 @@ align=center>
     <TD><INPUT onclick="fc_verifica('a#m')" value=a#m type=button name=a#m></TD>
     <TD>&nbsp;</TD></TR>
   <TR>
-    <TD width="14%"><INPUT onclick="fc_verifica('cº')" value=cº type=button name=cº></TD>
-    <TD><INPUT onclick="fc_verifica('dº')" value=dº type=button name=dº></TD>
-    <TD><INPUT onclick="fc_verifica('eº')" value=eº type=button name=eº></TD>
-    <TD><INPUT onclick="fc_verifica('fº')" value=fº type=button name=fº></TD>
-    <TD><INPUT onclick="fc_verifica('gº')" value=gº type=button name=gº></TD>
-    <TD><INPUT onclick="fc_verifica('aº')" value=aº type=button name=aº></TD>
-    <TD><INPUT onclick="fc_verifica('bº')" value=bº type=button name=bº></TD></TR>
+    <TD width="14%"><INPUT onclick="fc_verifica('cï¿½')" value=cï¿½ type=button name=cï¿½></TD>
+    <TD><INPUT onclick="fc_verifica('dï¿½')" value=dï¿½ type=button name=dï¿½></TD>
+    <TD><INPUT onclick="fc_verifica('eï¿½')" value=eï¿½ type=button name=eï¿½></TD>
+    <TD><INPUT onclick="fc_verifica('fï¿½')" value=fï¿½ type=button name=fï¿½></TD>
+    <TD><INPUT onclick="fc_verifica('gï¿½')" value=gï¿½ type=button name=gï¿½></TD>
+    <TD><INPUT onclick="fc_verifica('aï¿½')" value=aï¿½ type=button name=aï¿½></TD>
+    <TD><INPUT onclick="fc_verifica('bï¿½')" value=bï¿½ type=button name=bï¿½></TD></TR>
   <TR>
-    <TD width="14%"><INPUT onclick="fc_verifica('c#º')" value=c#º type=button name=c#º></TD>
-    <TD><INPUT onclick="fc_verifica('d#º')" value=d#º type=button name=d#º></TD>
+    <TD width="14%"><INPUT onclick="fc_verifica('c#ï¿½')" value=c#ï¿½ type=button name=c#ï¿½></TD>
+    <TD><INPUT onclick="fc_verifica('d#ï¿½')" value=d#ï¿½ type=button name=d#ï¿½></TD>
     <TD>&nbsp;</TD>
-    <TD><INPUT onclick="fc_verifica('f#º')" value=f#º type=button name=f#º></TD>
-    <TD><INPUT onclick="fc_verifica('g#º')" value=g#º type=button name=g#º></TD>
-    <TD><INPUT onclick="fc_verifica('a#º')" value=a#º type=button name=a#º></TD>
+    <TD><INPUT onclick="fc_verifica('f#ï¿½')" value=f#ï¿½ type=button name=f#ï¿½></TD>
+    <TD><INPUT onclick="fc_verifica('g#ï¿½')" value=g#ï¿½ type=button name=g#ï¿½></TD>
+    <TD><INPUT onclick="fc_verifica('a#ï¿½')" value=a#ï¿½ type=button name=a#ï¿½></TD>
     <TD>&nbsp;</TD></TR></TBODY></TABLE>
 <CENTER>&nbsp;</CENTER>
 <TABLE style="POSITION: absolute; LEFT: 46px" width="80%">
@@ -346,5 +346,5 @@ align=center>
   <TR>
     <TD style="TEXT-ALIGN: center"><INPUT onclick=fc_inicia() value=Novo type=button name=p_resp></TD></TR></TBODY></TABLE>
 <CENTER>&nbsp;</CENTER>
-<CENTER style="FONT-SIZE: 7pt">Trog Designs® 2004 - Todos os direitos reservados 
+<CENTER style="FONT-SIZE: 7pt">Trog Designsï¿½ 2004 - Todos os direitos reservados 
 </CENTER></BODY></HTML>
